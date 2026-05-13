@@ -1,12 +1,12 @@
 #!/bin/bash
-# LibreForgeOS Fedora Live ISO Builder
-# Creates a bootable ISO from Fedora with LibreForgeOS customizations
+# TrekForgeOS Fedora Live ISO Builder
+# Creates a bootable ISO from Fedora with TrekForgeOS customizations
 
 set -e
 
-DISTRO_NAME="LibreForgeOS"
+DISTRO_NAME="TrekForgeOS"
 DISTRO_VERSION="1.0"
-KS_FILE="libreforgeos-fedora.ks"
+KS_FILE="trekforgeos-fedora.ks"
 OUTPUT_DIR="../iso-output"
 
 echo "=========================================="
@@ -28,10 +28,10 @@ sudo dnf install -y livecd-tools pungi-utils lorax spin-kickstarts
 
 # Prepare Kickstart file with local customizations
 echo "[2/3] Preparing Kickstart configuration..."
-cp $KS_FILE /tmp/libreforge-fedora.ks
+cp $KS_FILE /tmp/trekforge-fedora.ks
 
 # Add network config to Kickstart if needed
-cat >> /tmp/libreforge-fedora.ks << 'EOF'
+cat >> /tmp/trekforge-fedora.ks << 'EOF'
 
 %post
 # Add Chaotic-AUR equivalent for Fedora (CoPR repos for gaming)
@@ -39,7 +39,7 @@ sudo dnf copr enable -y che/nerd-fonts || true
 sudo dnf copr enable -y zeno/scrcpy || true
 
 # Set default shell to fish
-sed -i 's/^user:.*:$/user:x:1000:1000:LibreForge User:\/home\/user:\/usr\/bin\/fish/' /etc/passwd || true
+sed -i 's/^user:.*:$/user:x:1000:1000:TrekForge User:\/home\/user:\/usr\/bin\/fish/' /etc/passwd || true
 
 # Create directories for themes
 mkdir -p /home/user/.config/fish
@@ -59,17 +59,17 @@ echo "[3/3] Building ISO image (this may take 15-25 minutes)..."
 
 # Use liveimage-creator or lorax based on available tool
 if command -v liveimage-creator &> /dev/null; then
-  sudo liveimage-creator -c /tmp/libreforge-fedora.ks \
-    -o LibreForgeOS-Fedora-${DISTRO_VERSION}-Live.iso \
-    --cache=/tmp/libreforgeos-cache \
-    --title="LibreForgeOS" \
+  sudo liveimage-creator -c /tmp/trekforge-fedora.ks \
+    -o TrekForgeOS-Fedora-${DISTRO_VERSION}-Live.iso \
+    --cache=/tmp/trekforgeos-cache \
+    --title="TrekForgeOS" \
     --releasever=39
 elif command -v lorax &> /dev/null; then
   sudo lorax \
     -p LibreForgeOS \
     -v ${DISTRO_VERSION} \
     -r ${DISTRO_VERSION} \
-    -s /tmp/libreforge-fedora.ks \
+    -s /tmp/trekforge-fedora.ks \
     -o ./lorax-output/
 else
   echo "✗ Neither liveimage-creator nor lorax found!"
@@ -78,14 +78,14 @@ else
 fi
 
 # Copy ISO to output directory if build succeeded
-if [ -f "LibreForgeOS-Fedora-${DISTRO_VERSION}-Live.iso" ]; then
-  sudo cp LibreForgeOS-Fedora-${DISTRO_VERSION}-Live.iso $OUTPUT_DIR/
-  sudo chown $(whoami):$(whoami) $OUTPUT_DIR/LibreForgeOS-Fedora-${DISTRO_VERSION}-Live.iso
+if [ -f "TrekForgeOS-Fedora-${DISTRO_VERSION}-Live.iso" ]; then
+  sudo cp TrekForgeOS-Fedora-${DISTRO_VERSION}-Live.iso $OUTPUT_DIR/
+  sudo chown $(whoami):$(whoami) $OUTPUT_DIR/TrekForgeOS-Fedora-${DISTRO_VERSION}-Live.iso
   echo ""
   echo "=========================================="
   echo "✓ ISO Build Complete!"
-  echo "ISO Location: $(pwd)/${OUTPUT_DIR}/LibreForgeOS-Fedora-${DISTRO_VERSION}-Live.iso"
-  echo "Size: $(du -h $OUTPUT_DIR/LibreForgeOS-Fedora-${DISTRO_VERSION}-Live.iso | cut -f1)"
+  echo "ISO Location: $(pwd)/${OUTPUT_DIR}/TrekForgeOS-Fedora-${DISTRO_VERSION}-Live.iso"
+  echo "Size: $(du -h $OUTPUT_DIR/TrekForgeOS-Fedora-${DISTRO_VERSION}-Live.iso | cut -f1)"
   echo "=========================================="
 else
   echo "✗ ISO build failed. Check logs for details."
