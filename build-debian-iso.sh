@@ -1,10 +1,10 @@
 #!/bin/bash
-# LibreForgeOS Debian/Ubuntu Live ISO Builder
+# TrekForgeOS Debian/Ubuntu Live ISO Builder
 # Creates a bootable ISO from Debian with LibreForgeOS customizations
 
 set -e
 
-DISTRO_NAME="LibreForgeOS"
+DISTRO_NAME="TrekForgeOS"
 DISTRO_VERSION="1.0"
 BUILD_DIR="./debian-live-build"
 OUTPUT_DIR="./iso-output"
@@ -37,13 +37,13 @@ sudo lb config \
   --mirror-chroot-security http://security.debian.org/debian-security/ \
   --mirror-binary http://deb.debian.org/debian/ \
   --mirror-binary-security http://security.debian.org/debian-security/ \
-  --bootappend-live "boot=live components hostname=libreforge username=user" \
+  --bootappend-live "boot=live components hostname=trekforge username=user" \
   --linux-flavours amd64 \
   --linux-packages linux-image
 
-# Add LibreForgeOS packages
+# Add TrekForgeOS packages
 echo "[3/5] Configuring packages..."
-cat > config/package-lists/libreforge.list.chroot << 'EOF'
+cat > config/package-lists/trekforge.list.chroot << 'EOF'
 # Linux 7 Kernel
 linux-image-amd64
 linux-headers-amd64
@@ -89,7 +89,7 @@ EOF
 # Create hooks for theme installation
 echo "[4/5] Setting up post-install hooks..."
 mkdir -p config/hooks/normal
-cat > config/hooks/normal/8000-libreforge-themes.chroot << 'EOF'
+cat > config/hooks/normal/8000-trekforge-themes.chroot << 'EOF'
 #!/bin/bash
 set -e
 
@@ -112,7 +112,7 @@ flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flat
 echo "LibreForgeOS customizations installed!"
 EOF
 
-chmod +x config/hooks/normal/8000-libreforge-themes.chroot
+chmod +x config/hooks/normal/8000-trekforge-themes.chroot
 
 # Build the ISO
 echo "[5/5] Building ISO image (this may take 10-20 minutes)..."
@@ -120,13 +120,13 @@ sudo lb build 2>&1 | tee build.log
 
 # Copy ISO to output directory
 if [ -f "live-image-amd64.hybrid.iso" ]; then
-  sudo cp live-image-amd64.hybrid.iso ../$OUTPUT_DIR/LibreForgeOS-Debian-${DISTRO_VERSION}-amd64-live.iso
-  sudo chown $(whoami):$(whoami) ../$OUTPUT_DIR/LibreForgeOS-Debian-${DISTRO_VERSION}-amd64-live.iso
+  sudo cp live-image-amd64.hybrid.iso ../$OUTPUT_DIR/TrekForgeOS-Debian-${DISTRO_VERSION}-amd64-live.iso
+  sudo chown $(whoami):$(whoami) ../$OUTPUT_DIR/TrekForgeOS-Debian-${DISTRO_VERSION}-amd64-live.iso
   echo ""
   echo "=========================================="
   echo "✓ ISO Build Complete!"
-  echo "ISO Location: $(pwd)/../${OUTPUT_DIR}/LibreForgeOS-Debian-${DISTRO_VERSION}-amd64-live.iso"
-  echo "Size: $(du -h ../$OUTPUT_DIR/LibreForgeOS-Debian-${DISTRO_VERSION}-amd64-live.iso | cut -f1)"
+  echo "ISO Location: $(pwd)/../${OUTPUT_DIR}/TrekForgeOS-Debian-${DISTRO_VERSION}-amd64-live.iso"
+  echo "Size: $(du -h ../$OUTPUT_DIR/TrekForgeOS-Debian-${DISTRO_VERSION}-amd64-live.iso | cut -f1)"
   echo "=========================================="
 else
   echo "✗ ISO build failed. Check build.log for details."
