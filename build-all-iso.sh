@@ -11,7 +11,7 @@ BUILD_LOG="build_${TIMESTAMP}.log"
 mkdir -p $OUTPUT_DIR
 
 echo "=========================================="
-echo "LibreForgeOS Multi-Distribution ISO Builder"
+echo "TrekForgeOS Multi-Distribution ISO Builder"
 echo "=========================================="
 echo "Output Directory: $OUTPUT_DIR"
 echo "Build Log: $BUILD_LOG"
@@ -20,7 +20,7 @@ echo ""
 # Function to build each ISO
 build_debian() {
   echo "┌──────────────────────────────────────────┐"
-  echo "│ Building Debian-based LibreForgeOS ISO   │"
+  echo "│ Building Debian-based TrekForgeOS ISO   │"
   echo "└──────────────────────────────────────────┘"
   cd debian
   chmod +x build-iso.sh
@@ -31,7 +31,7 @@ build_debian() {
 
 build_fedora() {
   echo "┌──────────────────────────────────────────┐"
-  echo "│ Building Fedora-based LibreForgeOS ISO   │"
+  echo "│ Building Fedora-based TrekForgeOS ISO   │"
   echo "└──────────────────────────────────────────┘"
   cd fedora
   chmod +x build-iso.sh
@@ -42,7 +42,7 @@ build_fedora() {
 
 build_arch() {
   echo "┌──────────────────────────────────────────┐"
-  echo "│ Building Arch-based LibreForgeOS ISO     │"
+  echo "│ Building Arch-based TrekForgeOS ISO     │"
   echo "└──────────────────────────────────────────┘"
   cd arch
   chmod +x build-iso.sh
