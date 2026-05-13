@@ -24,11 +24,11 @@ chmod +x burn-iso.sh
 Auto-install-scripts/
 ├── debian/
 │   ├── debian-setup.sh              # Post-install configuration
-│   ├── libreforgeos-debian.preseed  # Unattended installation
+│   ├── trekforgeos-debian.preseed   # Unattended installation
 │   └── build-iso.sh                 # ISO builder
 ├── fedora/
 │   ├── fedora-setup.sh              # Post-install configuration
-│   ├── libreforgeos-fedora.ks       # Kickstart configuration
+│   ├── trekforgeos-fedora.ks        # Kickstart configuration
 │   └── build-iso.sh                 # ISO builder
 ├── arch/
 │   ├── arch-setup.sh                # Post-install configuration
@@ -196,7 +196,7 @@ qemu-system-x86_64 -m 4G -smp 4 -enable-kvm \
   -cdrom iso-output/TrekForgeOS-*.iso
 
 # VirtualBox
-VBoxManage createvm --name LibreForgeOS --ostype Linux_64
+VBoxManage createvm --name TrekForgeOS --ostype Linux_64
 ```
 
 ## ISO Verification
@@ -406,7 +406,7 @@ TrekForgeOS integrates:
 
 ---
 
-**LibreForgeOS** - Enterprise-Grade Gaming & Streaming Linux Distribution  
+**TrekForgeOS** - Enterprise-Grade Gaming & Streaming Linux Distribution  
 *Built with the precision of Starfleet technology*
 
 **Version**: 1.0  
