@@ -1,4 +1,4 @@
-# LibreForgeOS - Complete Build System
+# TrekForgeOS - Complete Build System
 
 A comprehensive multi-distribution Linux ISO builder for gaming, streaming, and music production with Star Trek ENT 23rd Century LCARs theming.
 
@@ -44,7 +44,7 @@ Auto-install-scripts/
 
 ## Distribution Variants
 
-### 🐧 Debian-based LibreForgeOS
+### 🐧 Debian-based TrekForgeOS
 - **Base**: Debian Bookworm (stable)
 - **Desktop**: GNOME with Wayland
 - **Package Manager**: apt
@@ -57,7 +57,7 @@ Auto-install-scripts/
 - Traditional package management
 - Excellent stability
 
-### 🎩 Fedora-based LibreForgeOS
+### 🎩 Fedora-based TrekForgeOS
 - **Base**: Fedora 39+ (bleeding edge)
 - **Desktop**: GNOME with Wayland
 - **Package Manager**: dnf
@@ -70,7 +70,7 @@ Auto-install-scripts/
 - SELinux support
 - Modern tooling
 
-### 🏹 Arch-based LibreForgeOS
+### 🏹 Arch-based TrekForgeOS
 - **Base**: Arch Linux (rolling)
 - **Desktop**: GNOME with Wayland
 - **Package Manager**: pacman
@@ -186,14 +186,14 @@ bash burn-iso.sh
 **Fedora**:
 ```bash
 # Use Kickstart file via network boot
-# Point to libreforgeos-fedora.ks URL
+# Point to trekforgeos-fedora.ks URL
 ```
 
 ### 3. Virtual Machine
 ```bash
 # QEMU/KVM
 qemu-system-x86_64 -m 4G -smp 4 -enable-kvm \
-  -cdrom iso-output/LibreForgeOS-*.iso
+  -cdrom iso-output/TrekForgeOS-*.iso
 
 # VirtualBox
 VBoxManage createvm --name LibreForgeOS --ostype Linux_64
@@ -209,14 +209,14 @@ bash generate-checksums.sh
 ### Verify Downloaded ISOs
 ```bash
 cd iso-output
-sha256sum -c LibreForgeOS-Checksums-*.txt
+sha256sum -c TrekForgeOS-Checksums-*.txt
 ```
 
 ### Manual Verification
 ```bash
-sha256sum LibreForgeOS-Debian-*.iso
-sha256sum LibreForgeOS-Fedora-*.iso
-sha256sum LibreForgeOS-Arch-*.iso
+sha256sum TrekForgeOS-Debian-*.iso
+sha256sum TrekForgeOS-Fedora-*.iso
+sha256sum TrekForgeOS-Arch-*.iso
 ```
 
 ## System Requirements
@@ -288,7 +288,7 @@ cd arch && bash arch-setup.sh
 ### Modify Package Lists
 Edit distribution-specific files:
 - `debian/build-iso.sh` - config/package-lists/
-- `fedora/libreforgeos-fedora.ks` - %packages section
+- `fedora/trekforgeos-fedora.ks` - %packages section
 - `arch/build-iso.sh` - packages.x86_64 file
 
 ### Change Theming
@@ -300,7 +300,7 @@ Place custom theme files in:
 ### Add Custom Scripts
 Modify post-install hooks:
 - `debian/build-iso.sh` - config/hooks/normal/
-- `fedora/libreforgeos-fedora.ks` - %post section
+- `fedora/trekforgeos-fedora.ks` - %post section
 - `arch/build-iso.sh` - customize_airootfs.sh
 
 ## File Descriptions
@@ -351,7 +351,7 @@ radeontop
 
 ### Configure DHCP Server
 ```
-dhcp-boot=vmlinuz,libreforge,192.168.1.100
+dhcp-boot=vmlinuz,trekforge,192.168.1.100
 ```
 
 ### HTTP Server
@@ -386,7 +386,7 @@ To contribute improvements:
 
 ## License
 
-LibreForgeOS respects licenses of all included software:
+TrekForgeOS respects licenses of all included software:
 - **Debian**: DFSG-compliant free software
 - **Fedora**: Fedora Project License
 - **Arch**: Various FOSS licenses
@@ -394,7 +394,7 @@ LibreForgeOS respects licenses of all included software:
 
 ## Credits
 
-LibreForgeOS integrates:
+TrekForgeOS integrates:
 - Debian Live-Build
 - Fedora Kickstart/Lorax
 - Arch ISO tools
