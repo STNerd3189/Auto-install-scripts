@@ -1,10 +1,10 @@
 #!/bin/bash
-# LibreForgeOS Arch Live ISO Builder
-# Creates a bootable archiso image with LibreForgeOS customizations
+# TrekForgeOS Arch Live ISO Builder
+# Creates a bootable archiso image with TrekForgeOS customizations
 
 set -e
 
-DISTRO_NAME="LibreForgeOS"
+DISTRO_NAME="TrekForgeOS"
 DISTRO_VERSION="1.0"
 BUILD_DIR="./archiso-build"
 OUTPUT_DIR="../iso-output"
@@ -149,16 +149,16 @@ ln -sf /usr/share/zoneinfo/America/Chicago /etc/localtime
 systemctl enable NetworkManager
 
 # Set root password (can be changed on first boot)
-echo "root:libreforge" | chpasswd
+echo "root:trekforge" | chpasswd
 
 # Create regular user
-useradd -m -s /usr/bin/fish libreforge
-echo "libreforge:libreforge" | chpasswd
+useradd -m -s /usr/bin/fish trekforge
+echo "trekforge:trekforge" | chpasswd
 
 # Set up fish shell for regular user
-mkdir -p /home/libreforge/.config/fish
-echo "# LibreForgeOS Fish Configuration" > /home/libreforge/.config/fish/config.fish
-chown -R libreforge:libreforge /home/libreforge/.config
+mkdir -p /home/trekforge/.config/fish
+echo "# TrekForgeOS Fish Configuration" > /home/trekforge/.config/fish/config.fish
+chown -R trekeforge:trekforge /home/trekforge/.config
 
 # Install Chaotic-AUR for extra packages
 pacman-key --recv-key 3056513887B78AEB --keyserver keyserver.ubuntu.com || true
@@ -184,13 +184,13 @@ sudo mkarchiso -v -w /tmp/archiso-work -o $OUTPUT_DIR $PROFILE_DIR
 # Rename ISO
 if [ -f "$OUTPUT_DIR/archlinux-"*.iso ]; then
   ISO_FILE=$(ls -1 $OUTPUT_DIR/archlinux-*.iso | head -1)
-  sudo mv $ISO_FILE $OUTPUT_DIR/LibreForgeOS-Arch-${DISTRO_VERSION}-amd64-live.iso
-  sudo chown $(whoami):$(whoami) $OUTPUT_DIR/LibreForgeOS-Arch-${DISTRO_VERSION}-amd64-live.iso
+  sudo mv $ISO_FILE $OUTPUT_DIR/VForgeOS-Arch-${DISTRO_VERSION}-amd64-live.iso
+  sudo chown $(whoami):$(whoami) $OUTPUT_DIR/TrekForgeOS-Arch-${DISTRO_VERSION}-amd64-live.iso
   echo ""
   echo "=========================================="
   echo "✓ ISO Build Complete!"
-  echo "ISO Location: $(pwd)/${OUTPUT_DIR}/LibreForgeOS-Arch-${DISTRO_VERSION}-amd64-live.iso"
-  echo "Size: $(du -h $OUTPUT_DIR/LibreForgeOS-Arch-${DISTRO_VERSION}-amd64-live.iso | cut -f1)"
+  echo "ISO Location: $(pwd)/${OUTPUT_DIR}/TrekForgeOS-Arch-${DISTRO_VERSION}-amd64-live.iso"
+  echo "Size: $(du -h $OUTPUT_DIR/TrekForgeOS-Arch-${DISTRO_VERSION}-amd64-live.iso | cut -f1)"
   echo "=========================================="
 else
   echo "✗ ISO build failed. Check logs for details."
