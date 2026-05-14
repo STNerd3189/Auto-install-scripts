@@ -46,7 +46,7 @@ Auto-install-scripts/
 
 ### 🐧 Debian-based TrekForgeOS
 - **Base**: Debian Bookworm (stable)
-- **Desktop**: GNOME with Wayland
+- **Desktop**: KDE Plasma with Wayland
 - **Package Manager**: apt
 - **Build System**: live-build
 - **Size**: ~3.5 GB
@@ -59,7 +59,7 @@ Auto-install-scripts/
 
 ### 🎩 Fedora-based TrekForgeOS
 - **Base**: Fedora 39+ (bleeding edge)
-- **Desktop**: GNOME with Wayland
+- **Desktop**: KDE Plasma with Wayland
 - **Package Manager**: dnf
 - **Build System**: lorax/liveimage-creator
 - **Size**: ~3.8 GB
@@ -72,7 +72,7 @@ Auto-install-scripts/
 
 ### 🏹 Arch-based TrekForgeOS
 - **Base**: Arch Linux (rolling)
-- **Desktop**: GNOME with Wayland
+- **Desktop**: KDE Plasma with Wayland
 - **Package Manager**: pacman
 - **Build System**: archiso
 - **Size**: ~3.2 GB
@@ -116,7 +116,7 @@ Auto-install-scripts/
 
 ### 🎨 Theming
 - Star Trek ENT 23rd Century LCARs schema
-- GNOME Shell theming
+- KDE Plasma theming
 - GTK-4 dark theme
 - Custom cursor themes
 - Wallpaper packs (P1-P5, Purple, 76 Walls)
@@ -186,17 +186,17 @@ bash burn-iso.sh
 **Fedora**:
 ```bash
 # Use Kickstart file via network boot
-# Point to trekforgeos-fedora.ks URL
+# Point to libreforgeos-fedora.ks URL
 ```
 
 ### 3. Virtual Machine
 ```bash
 # QEMU/KVM
 qemu-system-x86_64 -m 4G -smp 4 -enable-kvm \
-  -cdrom iso-output/TrekForgeOS-*.iso
+  -cdrom iso-output/LibreForgeOS-*.iso
 
 # VirtualBox
-VBoxManage createvm --name TrekForgeOS --ostype Linux_64
+VBoxManage createvm --name LibreForgeOS --ostype Linux_64
 ```
 
 ## ISO Verification
@@ -209,14 +209,14 @@ bash generate-checksums.sh
 ### Verify Downloaded ISOs
 ```bash
 cd iso-output
-sha256sum -c TrekForgeOS-Checksums-*.txt
+sha256sum -c LibreForgeOS-Checksums-*.txt
 ```
 
 ### Manual Verification
 ```bash
-sha256sum TrekForgeOS-Debian-*.iso
-sha256sum TrekForgeOS-Fedora-*.iso
-sha256sum TrekForgeOS-Arch-*.iso
+sha256sum LibreForgeOS-Debian-*.iso
+sha256sum LibreForgeOS-Fedora-*.iso
+sha256sum LibreForgeOS-Arch-*.iso
 ```
 
 ## System Requirements
@@ -398,7 +398,7 @@ TrekForgeOS integrates:
 - Debian Live-Build
 - Fedora Kickstart/Lorax
 - Arch ISO tools
-- GNOME Desktop
+- KDE Plasma Desktop
 - Steam/Proton
 - OBS Studio
 - Ardour DAW
@@ -411,3 +411,4 @@ TrekForgeOS integrates:
 
 **Version**: 1.0  
 **Last Updated**: May 13, 2026
+
